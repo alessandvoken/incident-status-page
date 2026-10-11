@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation';
 export async function generateStaticParams() {
   return [
     {
-      org: 'acme',
+      org: 'fjord-systems',
     },
   ];
 }

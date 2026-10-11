@@ -5,7 +5,9 @@ export type PublicStatus = {
   name: string;
 };
 
-const organizations: PublicStatus[] = [{ slug: 'acme', name: 'Acme' }];
+const organizations: PublicStatus[] = [
+  { slug: 'fjord-systems', name: 'Fjord Systems' },
+];
 
 export async function getPublicStatus(
   org: string,
