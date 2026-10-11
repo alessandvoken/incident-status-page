@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import { getPublicStatus } from '@/features/status/queries';
+import { StatusIndicator } from '@/features/status/ui/status-indicator';
 
 import { notFound } from 'next/navigation';
 
@@ -40,7 +41,8 @@ async function OrgStatus({
       <ul>
         {status.components.map((component) => (
           <li key={component.id}>
-            <span>{component.name}</span> <span>{component.status}</span>
+            <span>{component.name}</span>{' '}
+            <StatusIndicator status={component.status} />
           </li>
         ))}
       </ul>
