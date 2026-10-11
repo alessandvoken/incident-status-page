@@ -1,4 +1,7 @@
 import { Suspense } from 'react';
+import { getPublicStatus } from '@/features/status/queries';
+
+import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
   return [
@@ -24,5 +27,11 @@ async function OrgHeading({
   params: PageProps<'/status/[org]'>['params'];
 }) {
   const { org } = await params;
-  return <h1>{org}</h1>;
+  const status = await getPublicStatus(org);
+
+  if (status == null) {
+    notFound();
+  }
+
+  return <h1>{status.name}</h1>;
 }
