@@ -15,13 +15,13 @@ export default function StatusPage({ params }: PageProps<'/status/[org]'>) {
   return (
     <main>
       <Suspense fallback={<p>Loading</p>}>
-        <OrgHeading params={params} />
+        <OrgStatus params={params} />
       </Suspense>
     </main>
   );
 }
 
-async function OrgHeading({
+async function OrgStatus({
   params,
 }: {
   params: PageProps<'/status/[org]'>['params'];
@@ -33,5 +33,17 @@ async function OrgHeading({
     notFound();
   }
 
-  return <h1>{status.name}</h1>;
+  return (
+    <>
+      <h1>{status.name}</h1>
+      <h2>Components</h2>
+      <ul>
+        {status.components.map((component) => (
+          <li key={component.id}>
+            <span>{component.name}</span> <span>{component.status}</span>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
 }
